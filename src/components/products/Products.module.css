@@ -1,0 +1,12 @@
+.products h2 {
+	font-size: 1.75rem;
+	color: #b7bdc1;
+	font-weight: 300;
+	margin-bottom: 1rem;
+}
+
+.products input {
+	margin-bottom: 1rem;
+	padding: 0.5rem;
+	width: 100%;
+}

@@ -1,0 +1,52 @@
+.products-table {
+	border-collapse: collapse;
+}
+
+.products-table thead {
+	font-weight: 500;
+}
+
+.products-table td {
+	border: 1px solid #b7bdc1;
+	text-overflow: ellipsis;
+	padding: 0.5rem;
+}
+
+.col-id {
+	width: 20%;
+}
+
+.col-name {
+	width: 45%;
+}
+
+.col-img,
+.col-price,
+.col-category {
+	width: 7.5%;
+}
+
+.col-edit {
+	width: 12.5%;
+}
+
+.col-img img {
+	width: 100%;
+	aspect-ratio: 1/1;
+}
+
+.btn-edit,
+.btn-delete {
+	padding: 0.5rem;
+	border: none;
+	color: white;
+	border-radius: 2px;
+}
+
+.btn-edit {
+	background-color: green;
+}
+
+.btn-delete {
+	background-color: red;
+}

@@ -1,0 +1,17 @@
+.card {
+	padding: 0.5rem;
+	border-radius: 4px;
+	box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
+	flex-grow: 1;
+}
+
+.title {
+	margin-bottom: 2rem;
+	color: #b7bdc1;
+	text-transform: uppercase;
+}
+
+.qty {
+	margin-bottom: 2rem;
+	font-size: 2rem;
+}

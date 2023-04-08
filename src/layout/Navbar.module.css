@@ -1,0 +1,48 @@
+.nav {
+	color: #874cc4;
+	border-right: 1px solid #b7bdc1;
+	height: 100vh;
+}
+
+.nav h2 {
+	font-size: 1.75rem;
+	font-weight: 400;
+	padding: 1rem;
+	text-align: center;
+	border-bottom: 1px solid #b7bdc1;
+}
+
+.nav-list {
+	padding: 1rem;
+}
+
+.nav-list p {
+	text-transform: uppercase;
+	margin-bottom: 0.5rem;
+}
+
+.nav-list ul {
+	list-style: none;
+	padding-left: 1rem;
+}
+
+.nav-list li:last-child {
+	margin-bottom: 1rem;
+}
+
+.nav-list li {
+	margin-bottom: 0.5rem;
+}
+
+.nav-list a {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.nav-list a:hover {
+	color: #b7bdc1;
+}
+
+.active {
+	color: #3e81a1;
+}

@@ -1,0 +1,43 @@
+.input {
+	margin-bottom: 0.5rem;
+}
+
+.input-checkbox {
+	margin-bottom: 1rem;
+}
+
+.input label {
+	display: block;
+	margin-bottom: 0.25rem;
+}
+
+.input input {
+	width: 50%;
+	padding: 0.5rem;
+}
+
+.input textarea {
+	width: 50%;
+	height: 4rem;
+	resize: none;
+}
+
+.input select {
+	width: 50%;
+}
+
+.input input:focus,
+.input textarea:focus,
+.input select:focus {
+	outline: none;
+}
+
+.required::after {
+	content: '*';
+	color: red;
+}
+
+.input-checkbox {
+	display: flex;
+	gap: 1rem;
+}

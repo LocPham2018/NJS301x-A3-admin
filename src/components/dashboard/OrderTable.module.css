@@ -1,0 +1,41 @@
+.order-table {
+	border-collapse: collapse;
+}
+
+.order-table thead {
+	font-weight: 500;
+}
+
+.order-table td {
+	border: 1px solid #b7bdc1;
+	text-overflow: ellipsis;
+	padding: 0.5rem;
+}
+
+.col-id,
+.col-delivery,
+.col-status {
+	width: 15%;
+}
+
+.col-phone,
+.col-price {
+	width: 10%;
+}
+
+.col-name,
+.col-detail {
+	width: 7.5%;
+}
+
+.col-address {
+	width: 20%;
+}
+
+.btn-view {
+	padding: 0.5rem;
+	border: none;
+	color: white;
+	background-color: green;
+	border-radius: 2px;
+}
