@@ -1,7 +1,7 @@
 import Input from '../../ui/Input';
 import classes from './AuthForm.module.css';
 
-const AuthForm = ({ formState, onChange, onSubmit }) => {
+const AuthForm = ({ isLoading, formState, onChange, onSubmit }) => {
 	return (
 		<div className={classes.auth}>
 			<h2>Login</h2>
@@ -24,7 +24,7 @@ const AuthForm = ({ formState, onChange, onSubmit }) => {
 					value={formState.password}
 					onInput={onChange}
 				/>
-				<button>Login</button>
+				<button disabled={isLoading}>Login</button>
 			</form>
 		</div>
 	);

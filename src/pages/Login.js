@@ -14,7 +14,7 @@ const Login = () => {
 		navigate('/dashboard');
 	}
 
-	const { sendRequest: loginRequest } = useHttp();
+	const { isLoading, sendRequest: loginRequest } = useHttp();
 	const { formState, inputHandler } = useForm({
 		email: '',
 		password: '',
@@ -43,6 +43,7 @@ const Login = () => {
 
 	return (
 		<AuthForm
+			isLoading={isLoading}
 			formState={formState}
 			onChange={inputHandler}
 			onSubmit={loginHandler}
