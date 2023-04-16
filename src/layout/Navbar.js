@@ -1,21 +1,20 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { AuthContext, UserContext } from '../context/user-context-provider';
+import { useSubmitRequest } from '../hooks/use-fetch';
 import NavItem from '../ui/NavItem';
 import classes from './Navbar.module.css';
-import { AuthContext, UserContext } from '../context/user-context-provider';
-import { useHttp } from '../hooks/use-http';
-import { SERVER_URL } from '../others/request';
+import { ENDPOINTS } from '../others/request';
 
 const Navbar = () => {
 	const navigate = useNavigate();
 	const user = useContext(UserContext);
 	const setUser = useContext(AuthContext);
-	const { sendRequest: logout } = useHttp();
+	const {submitRequest} = useSubmitRequest();
 
 	const logoutHandler = () => {
-		const requestInput = {
-			url: `${SERVER_URL}/auth/logout`,
+		const options = {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -23,13 +22,15 @@ const Navbar = () => {
 			credentials: 'include',
 		};
 
-		logout(requestInput, responseData => {
+		const applyData = responseData => {
 			if (responseData.err) {
 				console.log(responseData.err);
 			}
 			setUser(null);
 			navigate('/');
-		});
+		};
+
+		submitRequest(ENDPOINTS.logout, options, applyData);
 	};
 
 	return (

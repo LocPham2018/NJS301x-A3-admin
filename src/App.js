@@ -1,29 +1,25 @@
-import { useContext, useEffect } from 'react';
+import { useCallback, useContext } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import UserProvider, { AuthContext } from './context/user-context-provider';
+import { useGetRequest } from './hooks/use-fetch';
 import Dashboard from './pages/Dashboard';
 import LiveChat from './pages/LiveChat';
 import Login from './pages/Login';
 import ProductPage from './pages/ProductPage';
-import UserProvider, { AuthContext } from './context/user-context-provider';
-import { SERVER_URL } from './others/request';
-import { useHttp } from './hooks/use-http';
+import { ENDPOINTS } from './others/request';
 
 const App = () => {
 	const setUser = useContext(AuthContext);
-	const { sendRequest: getUserInfo } = useHttp();
-
-	useEffect(() => {
-		const requestInput = {
-			url: `${SERVER_URL}/auth/session`,
-		};
-
-		getUserInfo(requestInput, responseData => {
+	const applyData = useCallback(
+		responseData => {
 			if (responseData.user) {
 				setUser(responseData.user);
 			}
-		});
-	}, [getUserInfo, setUser]);
+		},
+		[setUser]
+	);
+	useGetRequest(ENDPOINTS.session, applyData);
 
 	return (
 		<UserProvider>

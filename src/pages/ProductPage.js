@@ -1,11 +1,11 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useHttp } from '../hooks/use-http';
+import { UserContext } from '../context/user-context-provider';
+import { useGetRequest } from '../hooks/use-fetch';
 import Products from '../components/products/Products';
 import Layout from '../layout/Layout';
-import { SERVER_URL } from '../others/request';
-import { UserContext } from '../context/user-context-provider';
+import { ENDPOINTS } from '../others/request';
 
 const ProductPage = () => {
 	const navigate = useNavigate();
@@ -18,27 +18,16 @@ const ProductPage = () => {
 	}
 
 	const [products, setProducts] = useState([]);
-	const { isLoading, sendRequest: getProducts } = useHttp();
-
-	useEffect(() => {
-		const requestInput = {
-			url: `${SERVER_URL}/products/all`,
-		};
-
-		getProducts(requestInput, responseData => {
-			console.log(responseData);
-			if (responseData.success) {
-				setProducts(responseData.results);
-			}
-		});
-	}, [getProducts]);
+	const applyData = useCallback(responseData => {
+		if (responseData.success) {
+			setProducts(responseData.results);
+		}
+	}, []);
+	const { isLoading } = useGetRequest(ENDPOINTS.getProducts, applyData);
 
 	return (
 		<Layout>
-			<Products
-				isLoading={isLoading}
-				products={products}
-			/>
+			<Products isLoading={isLoading} products={products} />
 		</Layout>
 	);
 };

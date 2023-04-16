@@ -1,31 +1,23 @@
-import { useContext, useEffect } from 'react';
+import { useCallback, useContext } from 'react';
 
 import { AuthContext } from '../context/user-context-provider';
+import { useGetRequest } from '../hooks/use-fetch';
 import classes from './Layout.module.css';
 import Navbar from './Navbar';
-import { useHttp } from '../hooks/use-http';
-import { SERVER_URL } from '../others/request';
+import { ENDPOINTS } from '../others/request';
 
-const Layout = props => {
+const Layout = ({ children }) => {
 	const setUser = useContext(AuthContext);
-	const { sendRequest: getUserInfo } = useHttp();
-
-	useEffect(() => {
-		const requestInput = {
-			url: `${SERVER_URL}/auth/session`,
-		};
-
-		getUserInfo(requestInput, responseData => {
-			if (responseData.user) {
-				setUser(responseData.user);
-			}
-		});
-	}, [getUserInfo, setUser]);
+	useGetRequest(ENDPOINTS.session, useCallback(responseData => {
+		if (responseData.user) {
+			setUser(responseData.user);
+		}
+	}, [setUser]));
 
 	return (
 		<>
 			<Navbar />
-			<section className={classes.main}>{props.children}</section>
+			<section className={classes.main}>{children}</section>
 		</>
 	);
 };
